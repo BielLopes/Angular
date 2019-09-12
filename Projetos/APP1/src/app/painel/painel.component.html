@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-sm-6">
+        <app-progresso [progress]="progress"></app-progresso>
+        <!--
+        <app-progresso [xyz]="progress"></app-progresso>
+        -->
+
+      </div>
+      <div class="col-sm-6">
+          <div class="d-flex justify-content-end">
+            <app-tentativas [tentativas]="tentativas"></app-tentativas>
+          </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h6>{{ instrucao }}</h6>
+        <p>{{ rodadaFrase.fraseEng }}</p>
+        <div class="form-group">
+          <textarea 
+          class="form-control" 
+          rows="3"
+          (input)="atualizaResposta($event)" 
+          [value]="resposta"
+          ></textarea>
+          <!--Usar no textArea (input)="atualizaResposta(this.value)" não faz sentido aqui,
+             pois o contexto em que a função é executada não é o contexto do elemento, 
+             sim o contexto do linceher que executa o método, poi é ele que é chamado quando
+              o evento é ativado, logo o contexto varia 
+              o $event faz uma "cópia" do elemento no DOM e apartir dessa cópia podemos 
+              acessar os atributos do elemento, esse parametro é tipo Event-->
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-primary" (click)="verificarResposta()">Verificar</button>
+        </div>
+      </div>
+    </div>
+  </div>  
+</div>
+
